@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Paintings — An Interactive Art Map | CLA-I Academic Project</title>
+    <meta name="description" content="Explore India's rich painting traditions, artists, historical contexts, and geographic spread through an interactive map of Indian paintings.">
+    
+    <!-- Google Fonts: Playfair Display, Cormorant Garamond, Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Academic Banner Header -->
+    <aside class="academic-top-bar" aria-label="Academic Project Info">
+        <div class="container top-bar-content">
+            <span class="badge-academic">ACADEMIC PROJECT · CLA-I (10 MARKS)</span>
+            <span class="top-bar-sub">INDIAN PAINTINGS: AN INTERACTIVE ART MAP · GEOGRAPHIC SPREAD &amp; TRADITIONS</span>
+            <span class="top-bar-badge">COURSE OUTCOME 1 (CO1)</span>
+        </div>
+    </aside>
+
+    <!-- Sticky Navigation -->
+    <header class="site-header" id="site-header">
+        <div class="container nav-container">
+            <a href="#hero" class="brand-logo" aria-label="Indian Paintings Home">
+                <div class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <div class="logo-text-group">
+                    <span class="brand-title">INDIAN PAINTINGS</span>
+                    <span class="brand-subtitle">Interactive Art Map</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="primary-nav" id="primary-navigation" aria-label="Primary Navigation">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link active">HOME</a></li>
+                    <li><a href="#map-section" class="nav-link">MAP</a></li>
+                    <li><a href="#gallery-section" class="nav-link">PAINTINGS</a></li>
+                    <li><a href="#artists-section" class="nav-link">ARTISTS</a></li>
+                    <li><a href="#understanding-section" class="nav-link">ESSENTIALS</a></li>
+                    <li><a href="#traditions-section" class="nav-link">TRADITIONS</a></li>
+                    <li><a href="#references-section" class="nav-link">REFERENCES</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-pattern" aria-hidden="true"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="editorial-label">
+                        <span class="dot-gold"></span>
+                        INDIAN PAINTINGS · CLA-I
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="hero-title-main">Indian Paintings</span>
+                        <span class="hero-title-sub">Across Regions &amp; Traditions</span>
+                    </h1>
+                    <p class="hero-description">
+                        An interactive journey through the paintings, artists and visual traditions that shaped India's artistic heritage. Trace ancient cave murals, court miniatures, devotional expressions, folk idioms, and modern masterworks across the subcontinent.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#map-section" class="btn btn-primary" id="btn-explore-map">
+                            <span>EXPLORE THE MAP</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                        </a>
+                        <a href="#gallery-section" class="btn btn-outline" id="btn-browse-paintings">
+                            <span>BROWSE ALL PAINTINGS</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Stats Strip -->
+                    <div class="hero-stats-strip" aria-label="Key Collection Metrics">
+                        <div class="stat-item">
+                            <span class="stat-num">15</span>
+                            <span class="stat-label">Masterpiece Paintings</span>
+                        </div>
+                        <div class="stat-divider" aria-hidden="true"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">13</span>
+                            <span class="stat-label">Historic Painting Centers</span>
+                        </div>
+                        <div class="stat-divider" aria-hidden="true"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">2000+</span>
+                            <span class="stat-label">Years of Visual Heritage</span>
+                        </div>
+                        <div class="stat-divider" aria-hidden="true"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Exclusively Indian Paintings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Spotlight -->
+                <div class="hero-visual-card">
+                    <div class="hero-artwork-frame">
+                        <div class="hero-img-wrapper" id="hero-img-container">
+                            <img src="assets/bharat-mata.png" alt="Bharat Mata painted by Abanindranath Tagore (1905)" class="hero-artwork-img" id="hero-artwork-img" onerror="window.handleImageError(this, 'Bharat Mata', 'Bengal School')">
+                            <div class="hero-artwork-badge">Featured Masterpiece</div>
+                        </div>
+                        <div class="hero-artwork-caption">
+                            <div class="caption-meta">
+                                <span class="caption-region">Santiniketan · West Bengal</span>
+                                <span class="caption-year">1905</span>
+                            </div>
+                            <h3 class="caption-title">Bharat Mata</h3>
+                            <p class="caption-artist">Abanindranath Tagore · Bengal School</p>
+                            <button class="btn-text-action" onclick="window.openPaintingModal('bharat-mata')">
+                                Explore Artwork Details →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 02 — INTERACTIVE MAP -->
+        <section class="section map-section" id="map-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">02 · INTERACTIVE MAP</div>
+                    <h2 class="section-title">Where Paintings Live</h2>
+                    <p class="section-subtitle">
+                        Trace India's artistic traditions across regions, schools and communities. Click any regional marker to discover its indigenous traditions, featured paintings, and master artists.
+                    </p>
+                </div>
+
+                <!-- Region Quick Selector Pills -->
+                <div class="region-quick-bar" aria-label="Quick Select Painting Regions">
+                    <span class="quick-bar-label">Quick Jump to Region:</span>
+                    <div class="region-pills-container" id="region-pills">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Map Interface Layout -->
+                <div class="map-interface-grid">
+                    <!-- Leaflet Map Container -->
+                    <div class="map-card-wrapper">
+                        <div class="map-toolbar">
+                            <div class="map-toolbar-status" id="map-status">
+                                <span class="pulse-indicator"></span>
+                                <span>Showing <strong>13 Historic Painting Regions</strong> Across India</span>
+                            </div>
+                            <div class="map-toolbar-controls">
+                                <button class="btn-control" id="btn-reset-map" title="Reset Map View">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                                    <span>Reset View</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="india-map" class="interactive-map" role="region" aria-label="Interactive Map of Indian Painting Traditions"></div>
+                        <div class="map-footer-hint">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            <span>Tip: Click on any glowing marker on the map or select a region above to reveal its traditions and paintings.</span>
+                        </div>
+                    </div>
+
+                    <!-- Region Sidebar Info Panel -->
+                    <aside class="region-info-sidebar" id="region-sidebar" aria-live="polite">
+                        <div class="sidebar-placeholder" id="sidebar-placeholder">
+                            <div class="placeholder-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                            </div>
+                            <h3 class="placeholder-title">Select a Painting Region</h3>
+                            <p class="placeholder-text">Click on any marker across the map of India to inspect its painting tradition, historical context, celebrated artists, and associated masterpieces.</p>
+                            <div class="suggested-regions">
+                                <span class="suggested-label">Try exploring:</span>
+                                <button class="btn-chip" onclick="window.focusMapRegion('mithila')">📍 Mithila, Bihar</button>
+                                <button class="btn-chip" onclick="window.focusMapRegion('ajanta')">📍 Ajanta, Maharashtra</button>
+                                <button class="btn-chip" onclick="window.focusMapRegion('kishangarh')">📍 Kishangarh, Rajasthan</button>
+                            </div>
+                        </div>
+
+                        <!-- Active Region Content (Injected by JS) -->
+                        <div class="sidebar-active-content hidden" id="sidebar-active-content">
+                            <!-- Filled dynamically by script.js -->
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03 — PAINTING GALLERY -->
+        <section class="section gallery-section" id="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">03 · CURATED ARCHIVE</div>
+                    <h2 class="section-title">Paintings Across India</h2>
+                    <p class="section-subtitle">
+                        Explore celebrated works and regional traditions through the artists and communities who created them. Filter by tradition, style, or search by keyword.
+                    </p>
+                </div>
+
+                <!-- Gallery Controls: Search & Category Filters -->
+                <div class="gallery-controls-wrapper">
+                    <!-- Search Input -->
+                    <div class="search-box-container">
+                        <div class="search-input-wrapper">
+                            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="painting-search-input" class="search-input" placeholder="Search paintings, artists, traditions, or regions..." aria-label="Search paintings">
+                            <button class="search-clear-btn hidden" id="search-clear-btn" aria-label="Clear search">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="filter-tabs-container" role="tablist" aria-label="Filter Paintings by Category">
+                        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">ALL (<span id="count-all">15</span>)</button>
+                        <button class="filter-tab" data-filter="Classical" role="tab" aria-selected="false">CLASSICAL</button>
+                        <button class="filter-tab" data-filter="Miniature" role="tab" aria-selected="false">MINIATURE</button>
+                        <button class="filter-tab" data-filter="Folk & Traditional" role="tab" aria-selected="false">FOLK &amp; TRADITIONAL</button>
+                        <button class="filter-tab" data-filter="Regional" role="tab" aria-selected="false">REGIONAL</button>
+                        <button class="filter-tab" data-filter="Bengal School" role="tab" aria-selected="false">BENGAL SCHOOL</button>
+                        <button class="filter-tab" data-filter="Modern" role="tab" aria-selected="false">MODERN</button>
+                    </div>
+                </div>
+
+                <!-- Active Filter Status & Count -->
+                <div class="gallery-results-bar">
+                    <div class="results-count" id="results-count-text">
+                        Showing <strong>15</strong> paintings
+                    </div>
+                    <div class="results-active-tag hidden" id="active-filter-indicator">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Paintings Cards Grid (15 Paintings) -->
+                <div class="paintings-grid" id="paintings-grid" aria-live="polite">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+
+                <!-- No Results State -->
+                <div class="no-results-card hidden" id="no-results-card">
+                    <div class="no-results-icon">🎨</div>
+                    <h3>No matching paintings found</h3>
+                    <p>Try searching for a different artist, region, or clear your search filters.</p>
+                    <button class="btn btn-outline" id="btn-reset-filters">Reset All Filters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04 — THE ARTISTS & TRADITIONS -->
+        <section class="section artists-section" id="artists-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">04 · MASTERS &amp; COLLECTIVES</div>
+                    <h2 class="section-title">The Artists &amp; Traditions</h2>
+                    <p class="section-subtitle">
+                        From celebrated court masters and modern pioneers to hereditary community collectives, meet the visionaries behind India's painting heritage.
+                    </p>
+                </div>
+
+                <!-- Documented Artists Grid -->
+                <h3 class="sub-heading-group">Documented Master Artists</h3>
+                <div class="artists-grid" id="artists-grid">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+
+                <!-- Community & Traditional Guilds Highlight -->
+                <div class="traditional-guilds-banner">
+                    <div class="guilds-content">
+                        <div class="guilds-badge">COMMUNITY &amp; GUILD TRADITIONS</div>
+                        <h3 class="guilds-title">Hereditary Workshops &amp; Folk Collectives</h3>
+                        <p class="guilds-desc">
+                            Many of India’s most profound painting traditions—from the 5th-century Buddhist frescoes of <strong>Ajanta</strong> and sacred <strong>Warli</strong> village walls to the patuas of <strong>Kalighat</strong>, chitrakars of <strong>Raghurajpur</strong>, sthapatis of <strong>Tanjore &amp; Mysore</strong>, and narrative kalamkari masters of <strong>Srikalahasti</strong>—were nurtured by hereditary communities and anonymous workshops rather than individual signatures.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 05 — UNDERSTANDING INDIAN PAINTING (Deep Navy Section) -->
+        <section class="section understanding-section" id="understanding-section">
+            <div class="container">
+                <div class="section-header section-header-light">
+                    <div class="section-badge badge-gold">05 · THEMATIC ESSENTIALS</div>
+                    <h2 class="section-title text-light">Beyond the Painting</h2>
+                    <p class="section-subtitle text-light-muted">
+                        Indian painting traditions cannot be understood only through their images. Their regions, materials, techniques, themes and cultural contexts reveal how artistic ideas developed and travelled across generations.
+                    </p>
+                </div>
+
+                <!-- 5 Pillars Grid -->
+                <div class="five-pillars-grid">
+                    <!-- Pillar 01 -->
+                    <article class="pillar-card">
+                        <div class="pillar-num">01</div>
+                        <h3 class="pillar-title">REGION</h3>
+                        <div class="pillar-sub">Geographic &amp; Cultural Cradle</div>
+                        <p class="pillar-text">
+                            Where the tradition developed. Regional geography, royal courts, local ecology, sacred pilgrim centers, and monastic caves provided the unique environment and royal or temple patronage that nurtured distinct regional aesthetics.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>Ajanta monastic cliff caves</li>
+                            <li>Kishangarh &amp; Kangra princely courts</li>
+                            <li>Raghurajpur &amp; Mithila heritage villages</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pillar 02 -->
+                    <article class="pillar-card">
+                        <div class="pillar-num">02</div>
+                        <h3 class="pillar-title">MATERIAL</h3>
+                        <div class="pillar-sub">Organic &amp; Mineral Mediums</div>
+                        <p class="pillar-text">
+                            What the artists painted with and on. Masters formulated pigments from crushed minerals, lapis lazuli, lampblack, vegetable juices, and 24-karat gold leaf, applying them to prepared cloth (pata), handmade wasli paper, or mud walls.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>24K gold foil &amp; semi-precious gems (Tanjore)</li>
+                            <li>Natural vegetable &amp; mineral dyes (Kalamkari)</li>
+                            <li>Rice flour paste on mud wash (Warli)</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pillar 03 -->
+                    <article class="pillar-card">
+                        <div class="pillar-num">03</div>
+                        <h3 class="pillar-title">TECHNIQUE</h3>
+                        <div class="pillar-sub">Mastery of Line &amp; Layering</div>
+                        <p class="pillar-text">
+                            How the painting was created. From fresco-secco on rock plaster and agate stone burnishing to intricate bamboo pen (kalam) drawing and gesso relief embossing (sukka), Indian painting demanded meticulous craftsmanship.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>Fine squirrel-hair brushwork (Miniatures)</li>
+                            <li>Gesso embossing with unrefined gold (Mysore)</li>
+                            <li>Double-line continuous rhythm (Madhubani)</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pillar 04 -->
+                    <article class="pillar-card">
+                        <div class="pillar-num">04</div>
+                        <h3 class="pillar-title">THEME</h3>
+                        <div class="pillar-sub">Epics, Devotion &amp; Everyday Life</div>
+                        <p class="pillar-text">
+                            The stories, beliefs, and subjects represented. Visual narratives drew from the Ramayana, Mahabharata, Gita Govinda, Ragamala musical modes, divine archetypes, tribal life cycles, and early 20th-century national identity.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>Lyrical divine romance of Radha-Krishna</li>
+                            <li>Bodhisattva compassion and Jataka tales</li>
+                            <li>Nationalist allegory of Mother India</li>
+                        </ul>
+                    </article>
+
+                    <!-- Pillar 05 -->
+                    <article class="pillar-card">
+                        <div class="pillar-num">05</div>
+                        <h3 class="pillar-title">INFLUENCE</h3>
+                        <div class="pillar-sub">Continuity &amp; Modern Evolution</div>
+                        <p class="pillar-text">
+                            How the style evolved and influenced later artists. Indigenous traditions synthesized Persian court finesse, European oil realism, and modernist minimalism, inspiring movements like the Bengal School and Modern Indian Art.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>Ravi Varma’s academic oil revolution</li>
+                            <li>Tagore’s Swadeshi visual vocabulary</li>
+                            <li>Amrita Sher-Gil &amp; Tyeb Mehta modernism</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 06 — PAINTING TRADITIONS GRID -->
+        <section class="section traditions-section" id="traditions-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">06 · REGIONAL TRADITIONS</div>
+                    <h2 class="section-title">Many Regions. Many Visual Languages.</h2>
+                    <p class="section-subtitle">
+                        Discover 12 distinct Indian painting traditions. Click any tradition card to view its corresponding masterpiece paintings in the gallery.
+                    </p>
+                </div>
+
+                <!-- 12 Traditions Cards Grid -->
+                <div class="traditions-grid" id="traditions-grid">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 07 — ARTISTIC JOURNEY (CHRONOLOGICAL SUPPORT) -->
+        <section class="section journey-section" id="journey-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">07 · HISTORICAL HORIZONS</div>
+                    <h2 class="section-title">The Artistic Journey</h2>
+                    <p class="section-subtitle">
+                        A chronological perspective on India's painting heritage across major historic eras.
+                    </p>
+                </div>
+
+                <div class="journey-periods-container">
+                    <div class="period-card">
+                        <div class="period-era">ANCIENT</div>
+                        <div class="period-time">5th–6th Century CE</div>
+                        <h3 class="period-title">Cave Murals &amp; Frescoes</h3>
+                        <p class="period-desc">Classical Buddhist painting at Ajanta; masterly plasticity, expressive line work, and spiritual serenity.</p>
+                        <div class="period-tags">
+                            <span class="tag-painting">Bodhisattva Padmapani</span>
+                            <span class="tag-painting">Bodhisattva Vajrapani</span>
+                        </div>
+                    </div>
+
+                    <div class="period-card">
+                        <div class="period-era">CLASSICAL &amp; MEDIEVAL</div>
+                        <div class="period-time">16th–18th Century</div>
+                        <h3 class="period-title">Miniatures &amp; Court Arts</h3>
+                        <p class="period-desc">Lyrical Pahari landscapes, regal Rajasthani court portraiture, and South Indian gold-embossed devotional iconographies.</p>
+                        <div class="period-tags">
+                            <span class="tag-painting">Bani Thani</span>
+                            <span class="tag-painting">Radha &amp; Krishna</span>
+                            <span class="tag-painting">Tanjore &amp; Mysore Icons</span>
+                        </div>
+                    </div>
+
+                    <div class="period-card">
+                        <div class="period-era">COLONIAL ERA</div>
+                        <div class="period-time">19th Century</div>
+                        <h3 class="period-title">Academic Realism &amp; Urban Folk</h3>
+                        <p class="period-desc">Satirical Kalighat brushwork in Kolkata and Raja Ravi Varma’s pioneering integration of European oil realism with Indian mythological themes.</p>
+                        <div class="period-tags">
+                            <span class="tag-painting">Kalighat Painting</span>
+                            <span class="tag-painting">Shakuntala</span>
+                        </div>
+                    </div>
+
+                    <div class="period-card">
+                        <div class="period-era">NATIONALIST &amp; MODERN</div>
+                        <div class="period-time">20th Century</div>
+                        <h3 class="period-title">Swadeshi to Avant-Garde</h3>
+                        <p class="period-desc">Abanindranath Tagore’s Bengal School nationalist revival, Amrita Sher-Gil’s poignant modernism, and Tyeb Mehta’s post-colonial abstraction.</p>
+                        <div class="period-tags">
+                            <span class="tag-painting">Bharat Mata</span>
+                            <span class="tag-painting">Three Girls</span>
+                            <span class="tag-painting">Mahishasura</span>
+                        </div>
+                    </div>
+
+                    <div class="period-card">
+                        <div class="period-era">LIVING FOLK &amp; TRIBAL</div>
+                        <div class="period-time">Centuries to Present</div>
+                        <h3 class="period-title">Community Traditions</h3>
+                        <p class="period-desc">Continuous living heritage passed down through generations in domestic rituals, village walls, and sacred textiles.</p>
+                        <div class="period-tags">
+                            <span class="tag-painting">Madhubani</span>
+                            <span class="tag-painting">Pattachitra</span>
+                            <span class="tag-painting">Warli</span>
+                            <span class="tag-painting">Kalamkari</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 08 — RESEARCH & REFERENCES -->
+        <section class="section references-section" id="references-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">08 · ACADEMIC ARCHIVE</div>
+                    <h2 class="section-title">Research &amp; References</h2>
+                    <p class="section-subtitle">
+                        Scholarly resources, institutional archives, and museum collections referenced in this academic project.
+                    </p>
+                </div>
+
+                <div class="references-grid">
+                    <div class="ref-card">
+                        <div class="ref-institution">National Museum, New Delhi</div>
+                        <h4 class="ref-title">Miniature Painting &amp; Tanjore Collections</h4>
+                        <p class="ref-desc">Documentation on Rajasthani, Pahari, Tanjore, and Mysore schools of painting and classical treatises.</p>
+                        <a href="http://www.nationalmuseumindia.gov.in" target="_blank" rel="noopener noreferrer" class="ref-link">Visit Institutional Archive ↗</a>
+                    </div>
+
+                    <div class="ref-card">
+                        <div class="ref-institution">Archaeological Survey of India (ASI)</div>
+                        <h4 class="ref-title">Ajanta Caves Murals &amp; World Heritage Documentation</h4>
+                        <p class="ref-desc">Preservation studies, iconographic analyses, and 5th-century mural pigments of Caves 1 and 2.</p>
+                        <a href="https://asi.nic.in" target="_blank" rel="noopener noreferrer" class="ref-link">Explore ASI Documentation ↗</a>
+                    </div>
+
+                    <div class="ref-card">
+                        <div class="ref-institution">National Gallery of Modern Art (NGMA)</div>
+                        <h4 class="ref-title">Bengal School &amp; Modern Indian Art Collection</h4>
+                        <p class="ref-desc">Archival repository for Abanindranath Tagore, Amrita Sher-Gil, Raja Ravi Varma, and Tyeb Mehta.</p>
+                        <a href="http://ngmaindia.gov.in" target="_blank" rel="noopener noreferrer" class="ref-link">View NGMA Collections ↗</a>
+                    </div>
+
+                    <div class="ref-card">
+                        <div class="ref-institution">Indira Gandhi National Centre for the Arts (IGNCA)</div>
+                        <h4 class="ref-title">Folk and Tribal Painting Traditions of India</h4>
+                        <p class="ref-desc">Field documentation and monographs on Mithila (Madhubani), Warli, Pattachitra, and Kalamkari traditions.</p>
+                        <a href="http://ignca.gov.in" target="_blank" rel="noopener noreferrer" class="ref-link">Access IGNCA Portal ↗</a>
+                    </div>
+
+                    <div class="ref-card">
+                        <div class="ref-institution">UNESCO World Heritage Centre</div>
+                        <h4 class="ref-title">Ajanta Caves Inscription &amp; Cultural Criteria</h4>
+                        <p class="ref-desc">Criteria (i, ii, iii, vi) detailing the masterpiece status of classical Indian Buddhist painting.</p>
+                        <a href="https://whc.unesco.org/en/list/242" target="_blank" rel="noopener noreferrer" class="ref-link">Read UNESCO Citation ↗</a>
+                    </div>
+
+                    <div class="ref-card">
+                        <div class="ref-institution">Google Arts &amp; Culture</div>
+                        <h4 class="ref-title">Indian Visual Arts &amp; Heritage Museum Exhibits</h4>
+                        <p class="ref-desc">High-resolution digital archives and curated exhibitions of Indian miniature and modern art.</p>
+                        <a href="https://artsandculture.google.com/project/indian-culture" target="_blank" rel="noopener noreferrer" class="ref-link">Browse Google Arts &amp; Culture ↗</a>
+                    </div>
+                </div>
+
+                <div class="academic-note-box">
+                    <strong>Academic Compliance Note:</strong> This digital project strictly examines <em>Indian Paintings</em> (comprising murals, miniatures, cloth scrolls, canvas, paper, folk wall art, and modern works). Architectural monuments, standalone sculptures, performing arts, and general handicrafts are excluded to ensure strict pedagogical alignment with Course Outcome 1 (CO1).
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col-main">
+                <div class="footer-logo">
+                    <span class="footer-title">INDIAN PAINTINGS</span>
+                    <span class="footer-subtitle">An Interactive Art Map</span>
+                </div>
+                <p class="footer-tagline">
+                    An educational portal exploring the geographic spread, regional schools, and visual language of Indian painting traditions.
+                </p>
+                <div class="footer-assignment-meta">
+                    <span><strong>Assignment:</strong> Interactive Art Map (10 Marks) · CO1</span>
+                    <span><strong>Course:</strong> CLA-I · Art History &amp; Visual Culture</span>
+                </div>
+            </div>
+
+            <div class="footer-col-links">
+                <h4 class="footer-heading">Quick Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#map-section">Interactive India Map</a></li>
+                    <li><a href="#gallery-section">Painting Archive (15 Works)</a></li>
+                    <li><a href="#artists-section">Artists &amp; Traditions</a></li>
+                    <li><a href="#understanding-section">Beyond the Painting</a></li>
+                    <li><a href="#references-section">Institutional References</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col-action">
+                <h4 class="footer-heading">Interactive Map</h4>
+                <p class="footer-action-text">Return to the interactive map of India to explore painting regions.</p>
+                <a href="#map-section" class="btn btn-primary btn-sm">
+                    <span>EXPLORE THE MAP AGAIN ↑</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; Academic Submission · Indian Paintings Interactive Art Map. Designed for college submission.</p>
+                <p class="footer-tech-stack">Built with Vanilla HTML5, CSS3, JavaScript &amp; Leaflet</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PAINTING DETAILS MODAL -->
+    <div class="modal-overlay hidden" id="painting-modal" role="dialog" aria-modal="true" aria-labelledby="modal-painting-title" tabindex="-1">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modal-painting-close" aria-label="Close painting details modal">×</button>
+            <div class="modal-body" id="modal-painting-body">
+                <!-- Populated dynamically by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTIST DETAILS MODAL -->
+    <div class="modal-overlay hidden" id="artist-modal" role="dialog" aria-modal="true" aria-labelledby="modal-artist-name" tabindex="-1">
+        <div class="modal-card modal-card-artist">
+            <button class="modal-close-btn" id="modal-artist-close" aria-label="Close artist profile modal">×</button>
+            <div class="modal-body" id="modal-artist-body">
+                <!-- Populated dynamically by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Main Application JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
