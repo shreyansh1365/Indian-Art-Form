@@ -1,0 +1,17 @@
+﻿Place your 15 downloaded PNG painting images in this assets folder with these exact filenames:
+
+- bharat-mata.png
+- bani-thani.png
+- shakuntala.png
+- three-girls.png
+- mahishasura.png
+- radha-and-krishna.png
+- navaneeta-krishna-tanjore.png
+- devi-saraswati-mysore.png
+- bodhisattva-padmapani.png
+- bodhisattva-vajrapani.png
+- madhubani-ramayana.png
+- jagannath-pattachitra.png
+- kalighat-painting.png
+- warli-painting.png
+- kalamkari-krishna.png
